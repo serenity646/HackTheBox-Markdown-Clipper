@@ -24,7 +24,8 @@
       "csharp":       "csharp",
       "cpp":          "cpp",
       "c":            "c",
-    };
+    }
+  };
 
   const trackMousePosition = (e) => {
     Object.assign(document.documentElement.dataset, {
