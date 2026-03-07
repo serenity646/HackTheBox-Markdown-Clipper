@@ -1,0 +1,64 @@
+.htb-copy-button {
+  position: absolute !important;
+  top: 8px !important;
+  right: 8px !important;
+  width: 32px !important;
+  height: 32px !important;
+  border: none !important;
+  border-radius: 6px !important;
+  background: #9fef00 !important;
+  color: #111 !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  z-index: 999999 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
+  transition: all 0.2s ease !important;
+  opacity: 0 !important;
+  pointer-events: auto !important;
+}
+
+pre.shiki:hover .htb-copy-button {
+  opacity: 1 !important;
+}
+
+.htb-copy-button:hover {
+  transform: scale(1.1) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+}
+
+.htb-copy-button:active {
+  transform: scale(0.95) !important;
+}
+
+.htb-md-toast {
+  all: initial !important;
+  position: fixed !important;
+  bottom: 24px !important;
+  right: 24px !important;
+  z-index: 2147483647 !important;
+  padding: 10px 16px !important;
+  border-radius: 8px !important;
+  font-family: 'Courier New', monospace !important;
+  font-size: 14px !important;
+  font-weight: bold !important;
+  pointer-events: none !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5) !important;
+  transition: opacity 0.5s ease !important;
+}
+
+.htb-md-toast.success {
+  background: #9fef00 !important;
+  color: #111 !important;
+}
+
+.htb-md-toast.error {
+  background: #ff4d4d !important;
+  color: #fff !important;
+}
+
+.htb-md-toast.fade-out {
+  opacity: 0 !important;
+}
