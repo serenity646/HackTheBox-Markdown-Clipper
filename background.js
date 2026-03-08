@@ -123,42 +123,47 @@ function doHTBCopy() {
   // Empty lines have <span emptylineplaceholder="true">
   // We use innerText on each span.line which collapses all child spans correctly.
 
-  const codeEl = closestPre.querySelector("code");
   let codeText = "";
 
-  if (codeEl) {
-    const lineSpans = codeEl.querySelectorAll("span.line");
-    if (lineSpans.length > 0) {
-      // Collect lines, trimming trailing whitespace per line
-      const lines = [];
-      lineSpans.forEach(span => {
-        // innerText handles the colored child spans and gives us plain text
-        // emptylineplaceholder spans give us "\n" via innerText — trim to ""
-        let lineText = span.innerText;
-        // innerText on empty placeholder gives "\n", normalize to ""
-        if (span.querySelector("[emptylineplaceholder]")) {
-          lineText = "";
-        }
-        lines.push(lineText.trimEnd());
-      });
+  // ── Selection override: if user has text selected, use that instead ──
+  const selectedText = window.getSelection()?.toString().trim();
 
-      // Remove trailing empty lines
-      while (lines.length > 0 && lines[lines.length - 1] === "") {
-        lines.pop();
-      }
-
-      codeText = lines.join("\n");
-    } else {
-      // Fallback: no span.line found, use code innerText directly
-      codeText = codeEl.innerText.trimEnd();
-    }
+  if (selectedText) {
+    codeText = selectedText;
   } else {
-    // Fallback: just use pre innerText, but skip the label span text
-    // The label span has class "float-end" — remove it first
-    const clone = closestPre.cloneNode(true);
-    const labelSpan = clone.querySelector(".float-end");
-    if (labelSpan) labelSpan.remove();
-    codeText = clone.innerText.trimEnd();
+    const codeEl = closestPre.querySelector("code");
+    if (codeEl) {
+      const lineSpans = codeEl.querySelectorAll("span.line");
+      if (lineSpans.length > 0) {
+        // Collect lines, trimming trailing whitespace per line
+        const lines = [];
+        lineSpans.forEach(span => {
+          // innerText handles the colored child spans and gives us plain text
+          // emptylineplaceholder spans give us "\n" via innerText — trim to ""
+          let lineText = span.innerText;
+          // innerText on empty placeholder gives "\n", normalize to ""
+          if (span.querySelector("[emptylineplaceholder]")) {
+            lineText = "";
+          }
+          lines.push(lineText.trimEnd());
+        });
+        // Remove trailing empty lines
+        while (lines.length > 0 && lines[lines.length - 1] === "") {
+          lines.pop();
+        }
+        codeText = lines.join("\n");
+      } else {
+        // Fallback: no span.line found, use code innerText directly
+        codeText = codeEl.innerText.trimEnd();
+      }
+    } else {
+      // Fallback: just use pre innerText, but skip the label span text
+      // The label span has class "float-end" — remove it first
+      const clone = closestPre.cloneNode(true);
+      const labelSpan = clone.querySelector(".float-end");
+      if (labelSpan) labelSpan.remove();
+      codeText = clone.innerText.trimEnd();
+    }
   }
 
   if (!codeText) {
