@@ -57,4 +57,4 @@ bash · powershell · python · sql · javascript · typescript · php · java �
 ## Disclaimer
 This is an unofficial community tool and is not affiliated with or endorsed by HackTheBox. The HackTheBox logo is property of HackTheBox Ltd and is used with permission for non-commercial community projects.
 
-Initially scaffolded with AI assistance, extended and maintained by [@serenity646](https://github.com/serenity646) and contributors.
+Initially scaffolded with AI assistance, extended and maintained by [@serenity646](https://github.com/SeverSerenitygit) and contributors.
